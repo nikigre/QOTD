@@ -1,0 +1,6 @@
+C:\Users\nikgr\source\repos\QOTD\QOTD\obj\Debug\QOTD.csproj.CoreCompileInputs.cache
+C:\Users\nikgr\source\repos\QOTD\QOTD\bin\Debug\QOTDServer.exe.config
+C:\Users\nikgr\source\repos\QOTD\QOTD\bin\Debug\QOTDServer.exe
+C:\Users\nikgr\source\repos\QOTD\QOTD\bin\Debug\QOTDServer.pdb
+C:\Users\nikgr\source\repos\QOTD\QOTD\obj\Debug\QOTDServer.exe
+C:\Users\nikgr\source\repos\QOTD\QOTD\obj\Debug\QOTDServer.pdb
