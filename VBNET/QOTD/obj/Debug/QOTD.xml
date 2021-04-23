@@ -1,0 +1,37 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+QOTD
+</name>
+</assembly>
+<members>
+<member name="T:QOTD.My.Resources.Resources">
+<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member>
+<member name="P:QOTD.My.Resources.Resources.ResourceManager">
+<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member>
+<member name="P:QOTD.My.Resources.Resources.Culture">
+<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member>
+<member name="M:QOTD.Program.ReadTheResponse(System.Net.Sockets.NetworkStream)">
+ <summary>
+ Metods print to console output from NetworkStream
+ </summary>
+ <param name="nwStream">NetworkStream to read from</param>
+</member>
+<member name="M:QOTD.Program.handleHelp">
+ <summary>
+ Method prints help to the console
+ </summary>
+</member>
+</members>
+</doc>

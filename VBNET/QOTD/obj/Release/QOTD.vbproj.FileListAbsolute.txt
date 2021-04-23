@@ -1,0 +1,11 @@
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\bin\Release\QOTD.exe.config
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\bin\Release\QOTD.exe
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\bin\Release\QOTD.pdb
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\bin\Release\QOTD.xml
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Release\QOTD.vbprojAssemblyReference.cache
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Release\QOTD.Resources.resources
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Release\QOTD.vbproj.GenerateResource.cache
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Release\QOTD.vbproj.CoreCompileInputs.cache
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Release\QOTD.exe
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Release\QOTD.xml
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Release\QOTD.pdb

@@ -1,0 +1,10 @@
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\bin\Release\QOTD_server.exe.config
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\bin\Release\QOTD_server.exe
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\bin\Release\QOTD_server.pdb
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\bin\Release\QOTD_server.xml
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\obj\Release\QOTD_server.Resources.resources
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\obj\Release\QOTD_server.vbproj.GenerateResource.cache
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\obj\Release\QOTD_server.vbproj.CoreCompileInputs.cache
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\obj\Release\QOTD_server.exe
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\obj\Release\QOTD_server.xml
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD_server\obj\Release\QOTD_server.pdb
