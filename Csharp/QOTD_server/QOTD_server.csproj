@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{03E95F4E-D6D9-4D93-9261-ABABD880B0E9}</ProjectGuid>
+    <ProjectGuid>{A1C65EF2-81CF-4D20-B381-572BA7AA0543}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>QOTD</RootNamespace>
-    <AssemblyName>QOTD</AssemblyName>
+    <RootNamespace>QOTDServer</RootNamespace>
+    <AssemblyName>QOTDServer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

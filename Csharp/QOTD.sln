@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.1401
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QOTD", "QOTD\QOTD.csproj", "{A1C65EF2-81CF-4D20-B381-572BA7AA0543}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QOTD_server", "QOTD_server\QOTD_server.csproj", "{A1C65EF2-81CF-4D20-B381-572BA7AA0543}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client", "client\client.csproj", "{03E95F4E-D6D9-4D93-9261-ABABD880B0E9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QOTD", "QOTD\QOTD.csproj", "{03E95F4E-D6D9-4D93-9261-ABABD880B0E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,140 +3,120 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 
-namespace QOTD_server
+namespace client
 {
     class Program
     {
-
         static void Main(string[] args)
         {
-            List<string> quotes = new List<string> { }; //Variable for quotes
+            //Sets the default host address for the server
+            string host = "127.0.0.1";
 
-            //If we have first argument, then load custom quotes
-            if (args.Length == 1)
-                quotes.AddRange(System.IO.File.ReadAllLines(args[0]));
-            else //Else load default quotes
-                quotes.AddRange(System.IO.File.ReadAllLines("quotes.txt"));
-
-            //Create new server object
-            Server qotdServer = new Server("127.0.0.1", 17, quotes);
-
-            qotdServer.RunServer(); //We run our qotd server
-        }
-
-    }
-
-    class Server
-    {
-        /// <summary>
-        /// TcpListener that is waoting for clients to connect
-        /// </summary>
-        TcpListener server = null;
-
-        /// <summary>
-        /// If we have quote for every day, then this is set to true
-        /// </summary>
-        bool WeHaveQuoteForEveryDay = false;
-
-        /// <summary>
-        /// List of quotes
-        /// </summary>
-        List<string> quotes = null;
-
-        /// <summary>
-        /// Creates a new instance of QOTD server
-        /// </summary>
-        /// <param name="ip">IP address</param>
-        /// <param name="port">On which port you want to start server</param>
-        /// <param name="quotes">List of quotes</param>
-        public Server(string ip, int port, List<string> quotes)
-        {
-            this.quotes = quotes;
-
-            //We check, if we have 365/366 quotes
-            if (quotes.Count == 365 || quotes.Count == 366)
-                WeHaveQuoteForEveryDay = true;
-
-            //Initialize variables
-            IPAddress localAddr = IPAddress.Parse(ip);
-            server = new TcpListener(localAddr, port);
-        }
-
-        /// <summary>
-        /// This method starts listening for new clients
-        /// </summary>
-        private void StartListening()
-        {
-            try
+            if (args.Length > 0)
             {
-                while (true)
+                if (args[0].Trim() == "/?" || args[0].Contains("help"))
+                    handleHelp();
+
+                //If host is given, we try to parse it. If it is unsuccesful, then it terminates the program
+                IPAddress tmp;
+                if (IPAddress.TryParse(args[0], out tmp))
                 {
-                    Console.WriteLine("Waiting for a connection...");
-
-                    TcpClient client = server.AcceptTcpClient(); //Here we are waiting for a new connection
-
-                    Console.WriteLine("Connected to IP: " + client.Client.LocalEndPoint);
-
-                    //Creates new thread for a client and starts it
-                    Thread t = new Thread(new ParameterizedThreadStart(HandleRequest));
-                    t.Start(client);
-                }
-            }
-            catch (SocketException e) //If anything goes wrong, then we print an error to the terminal and start listening again
-            {
-                Console.WriteLine("SocketException: {0}", e);
-                StartListening();
-            }
-        }
-
-        /// <summary>
-        /// Method handles client's request
-        /// </summary>
-        /// <param name="obj">TcpClient in an object form</param>
-        public void HandleRequest(object obj)
-        {
-            try
-            {
-                //Gets the client and the stream for the client
-                TcpClient client = (TcpClient)obj;
-                var stream = client.GetStream();
-
-                //New byte[] array for out message
-                byte[] content = null;
-
-                //If we have enough quites for every year, then we just encode message that is saved in quotes
-                if (WeHaveQuoteForEveryDay)
-                    content = Encoding.ASCII.GetBytes(quotes[DateTime.Today.DayOfYear]);
-                else
-                {
-                    //If we don't have enough of them, then we randomly choose an element in the list
-                    Random r = new Random();
-                    content = Encoding.ASCII.GetBytes(quotes[r.Next(0, quotes.Count)]);
+                    System.Console.WriteLine("IP address is not in the correct format!");
+                    Environment.Exit(1);
                 }
 
-                //Writes content to the client
-                stream.Write(content, 0, content.Length);
-
-                //And closes the connection
-                client.Close();
+                host = args[0];
             }
-            catch (Exception ex)
+
+            //We declare new tcpClient
+            TcpClient tcpClient = null;
+            NetworkStream nwStream = null;
+
+            try
             {
-                Console.WriteLine("Exception: {0}", ex);
+                //We try to connect to the host
+                tcpClient = new TcpClient(host, 17);
+
+                //Gets stream from server
+                nwStream = tcpClient.GetStream();
+            }
+            catch (SocketException ex) //If we fail, because server is not avaliable this will happen
+            {
+                Console.WriteLine(ex.Message);
+                Environment.Exit(1);
+            }
+            catch (Exception ex) //If there is some other error, this will happen
+            {
+                Console.WriteLine("Unexpected error: " + ex.Message);
+                Environment.Exit(1);
             }
 
+            //Read the response from client
+            ReadTheResponse(nwStream);
+
+            try
+            {
+                //Close the connection
+                tcpClient.Close();
+            }
+            catch (Exception)
+            {
+                Environment.Exit(2);
+            }
         }
 
         /// <summary>
-        /// Method runs a server
+        /// Metods print to console output from NetworkStream
         /// </summary>
-        public void RunServer()
+        /// <param name="nwStream">NetworkStream to read from</param>
+        private static void ReadTheResponse(NetworkStream nwStream)
         {
-            server.Start();
+            //A variable for keeping bytes that are read
+            List<byte> response = new List<byte> { };
 
-            StartListening();
+            //temporary var
+            int enbyte = 0;
+
+            while (true)
+            {
+                //Reads one byte to temporary variable
+                enbyte = nwStream.ReadByte();
+
+                //If it is n -1 then it breaks loop
+                if (enbyte == -1)
+                    break;
+
+                //Adds byte to the list
+                response.Add((byte)enbyte);
+
+            }
+
+            //Decode array of bytes to ASCII string
+            string stringResponse = Encoding.ASCII.GetString(response.ToArray());
+
+            //Print the response back
+            System.Console.WriteLine(stringResponse);
+        }
+
+        /// <summary>
+        /// Method prints help to the console
+        /// </summary>
+        private static void handleHelp()
+        {
+            Console.WriteLine("USAGE:\n\tqotd [/? | [hostname] ]");
+            Console.WriteLine();
+            Console.WriteLine("where:");
+            Console.WriteLine("\thostname\t Is the hostname of QOTD server you want to connect to");
+            Console.WriteLine("\nOptions:");
+            Console.WriteLine("\t/? Display this help message");
+            Console.WriteLine("\nExamples:");
+            Console.WriteLine("\tqotd\t\t\t...Connects to the default server");
+            Console.WriteLine("\tqotd 127.0.0.1\t\t...Connects to the 127.0.0.1 server");
+            Console.WriteLine("\tqotd qotd.example.com\t...Connects to the qotd.example.com server");
+
+            Environment.Exit(0);
+
         }
     }
 }
