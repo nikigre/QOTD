@@ -17,6 +17,7 @@ namespace client
             {
                 if (args[0].Trim() == "/?" || args[0].Contains("help"))
                     handleHelp();
+
                 //If host is given, we try to parse it. If it is unsuccesful, then it terminates the program
                 IPAddress tmp;
                 if (IPAddress.TryParse(args[0], out tmp))
@@ -31,6 +32,7 @@ namespace client
             //We declare new tcpClient
             TcpClient tcpClient = null;
             NetworkStream nwStream = null;
+
             try
             {
                 //We try to connect to the host
@@ -50,6 +52,7 @@ namespace client
                 Environment.Exit(1);
             }
 
+            //Read the response from client
             ReadTheResponse(nwStream);
 
             try
