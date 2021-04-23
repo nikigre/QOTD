@@ -5,3 +5,10 @@ C:\Users\nikgr\source\repos\QOTD\client\bin\Debug\QOTD.exe
 C:\Users\nikgr\source\repos\QOTD\client\bin\Debug\QOTD.pdb
 C:\Users\nikgr\source\repos\QOTD\client\obj\Debug\QOTD.exe
 C:\Users\nikgr\source\repos\QOTD\client\obj\Debug\QOTD.pdb
+C:\Users\nikgr\source\repos\QOTD\Csharp\client\bin\Debug\QOTD.exe.config
+C:\Users\nikgr\source\repos\QOTD\Csharp\client\bin\Debug\QOTD.exe
+C:\Users\nikgr\source\repos\QOTD\Csharp\client\bin\Debug\QOTD.pdb
+C:\Users\nikgr\source\repos\QOTD\Csharp\client\obj\Debug\client.csprojAssemblyReference.cache
+C:\Users\nikgr\source\repos\QOTD\Csharp\client\obj\Debug\client.csproj.CoreCompileInputs.cache
+C:\Users\nikgr\source\repos\QOTD\Csharp\client\obj\Debug\QOTD.exe
+C:\Users\nikgr\source\repos\QOTD\Csharp\client\obj\Debug\QOTD.pdb

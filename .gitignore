@@ -1,0 +1,9 @@
+
+*.pdb
+*.cache
+*.pdb
+Csharp/.vs/
+Csharp/.vs/QOTD/v15/.suo
+Csharp/.vs/QOTD/v15/Server/sqlite3/storage.ide
+Csharp/.vs/QOTD/v15/Server/sqlite3/storage.ide-shm
+Csharp/.vs/QOTD/v15/Server/sqlite3/storage.ide-wal

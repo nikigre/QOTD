@@ -8,7 +8,14 @@ namespace client
     {
         static void Main(string[] args)
         {
-            TcpClient tcpClient = new TcpClient("localhost", 17);
+            string ip = "127.0.0.1";
+            if (args.Length > 0)
+            {
+                ip = args[0];
+            }
+
+            TcpClient tcpClient = new TcpClient(ip, 17);
+
             List<byte> odgovor = new List<byte> { };
 
             NetworkStream nwStream = tcpClient.GetStream();
