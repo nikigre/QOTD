@@ -22,6 +22,29 @@ QOTD_server
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="F:QOTD_server.Server.server">
+ <summary>
+ TcpListener that Is waoting for clients to connect
+ </summary>
+</member>
+<member name="F:QOTD_server.Server.WeHaveQuoteForEveryDay">
+ <summary>
+ If we have quote for every day, then this Is set to true
+ </summary>>
+</member>
+<member name="F:QOTD_server.Server.quotes">
+ <summary>
+ List of quotes
+ </summary>
+</member>
+<member name="M:QOTD_server.Server.#ctor(System.String,System.Int32,System.Collections.Generic.List{System.String})">
+ <summary>
+ Creates a New instance of QOTD server
+ </summary>
+ <param name="ip">IP address</param>
+ <param name="port">On which port you want to start server</param>
+ <param name="quotes">List of quotes</param>
+</member>
 <member name="M:QOTD_server.Server.StartListening">
  <summary>
  This method starts listening for new clients
