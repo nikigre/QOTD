@@ -39,14 +39,23 @@ Public Class Server
     ''' </summary>
     Dim quotes As New List(Of String)()
 
+
+    ''' <summary>
+    ''' Creates a New instance of QOTD server
+    ''' </summary>
+    ''' <param name="ip">IP address</param>
+    ''' <param name="port">On which port you want to start server</param>
+    ''' <param name="quotes">List of quotes</param>
     Public Sub New(ByVal ip As String, ByVal port As Integer, ByVal quotes As List(Of String))
         Me.quotes = quotes
+
+        'We check, if we have 365/366 quotes
         If quotes.Count = 365 Or quotes.Count = 366 Then
             WeHaveQuoteForEveryDay = True
         End If
 
+        'Initialize variables
         Dim localAddr As IPAddress = IPAddress.Parse(ip)
-
         server = New TcpListener(localAddr, port)
     End Sub
 
@@ -58,16 +67,17 @@ Public Class Server
             While True
                 Console.WriteLine("Waiting for a connection...")
 
-                Dim client As TcpClient = server.AcceptTcpClient()
+                Dim client As TcpClient = server.AcceptTcpClient() 'Here we are waiting for a new connection
 
                 Console.WriteLine("Connected to IP: " & client.Client.LocalEndPoint.ToString())
 
+                'Creates new thread for a client and starts it
                 Dim t As Thread = New Thread(New ParameterizedThreadStart(AddressOf HandleRequest))
                 t.Start(client)
 
             End While
 
-        Catch ex As Exception
+        Catch ex As Exception 'If anything goes wrong, then we print an error to the terminal and start listening again
             Console.WriteLine("SocketException: {0}", ex)
             StartListening()
         End Try
@@ -81,21 +91,27 @@ Public Class Server
     ''' <param name="obj">TcpClient in an object form</param>
     Public Sub HandleRequest(obj As Object)
         Try
+            'Gets the client and the stream for the client
             Dim client As TcpClient = DirectCast(obj, TcpClient)
             Dim stream As NetworkStream = client.GetStream()
 
+            'New byte[] array for out message
             Dim content As Byte() = Nothing
 
+            'If we have enough quites for every year, then we just encode message that is saved in quotes
             If WeHaveQuoteForEveryDay Then
                 content = Encoding.ASCII.GetBytes(quotes(DateTime.Today.DayOfYear))
             Else
+                'If we don't have enough of them, then we randomly choose an element in the list
                 Dim r As New Random()
 
                 content = Encoding.ASCII.GetBytes(quotes(r.Next(0, quotes.Count)))
             End If
 
+            'Writes content to the client
             stream.Write(content, 0, content.Length)
 
+            'And closes the connection
             client.Close()
 
         Catch ex As Exception

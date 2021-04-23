@@ -13,3 +13,5 @@ Csharp/.vs/QOTD/v15/Server/sqlite3/storage.ide-wal
 *.pdb
 Csharp/.vs/QOTD/v15/.suo
 *.lock
+*.ide-wal
+VBNET/QOTD/.vs/QOTD/v15/Server/sqlite3/storage.ide
