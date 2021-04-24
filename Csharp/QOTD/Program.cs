@@ -11,7 +11,7 @@ namespace client
         static void Main(string[] args)
         {
             //Sets the default host address for the server
-            string host = "127.0.0.1";
+            string host = "qotd.nikigre.si";
 
             //If we have no arguments, then we do a TCP request on the default sever
             if (args.Length == 0)

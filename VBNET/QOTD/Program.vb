@@ -6,7 +6,7 @@ Module Program
 
     Sub Main(args As String())
         'Sets the default host address for the server
-        Dim host As String = "127.0.0.1"
+        Dim host As String = "qotd.nikigre.si"
 
         'If we have no arguments, then we do a TCP request on the default sever
         If args.Length = 0 Then
