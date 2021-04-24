@@ -16,7 +16,7 @@ Module Program
         End If
 
         'Create New server object
-        Dim qotdServer As New Server("127.0.0.1", 17, quotes)
+        Dim qotdServer As New Server(17, quotes)
 
         qotdServer.RunServer() 'We run our qotd server
     End Sub
@@ -43,10 +43,9 @@ Public Class Server
     ''' <summary>
     ''' Creates a New instance of QOTD server
     ''' </summary>
-    ''' <param name="ip">IP address</param>
     ''' <param name="port">On which port you want to start server</param>
     ''' <param name="quotes">List of quotes</param>
-    Public Sub New(ByVal ip As String, ByVal port As Integer, ByVal quotes As List(Of String))
+    Public Sub New(ByVal port As Integer, ByVal quotes As List(Of String))
         Me.quotes = quotes
 
         'We check, if we have 365/366 quotes
@@ -54,9 +53,8 @@ Public Class Server
             WeHaveQuoteForEveryDay = True
         End If
 
-        'Initialize variables
-        Dim localAddr As IPAddress = IPAddress.Parse(ip)
-        server = New TcpListener(localAddr, port)
+        'Initialize variable
+        server = New TcpListener(IPAddress.Any, port)
     End Sub
 
     ''' <summary>

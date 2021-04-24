@@ -37,11 +37,10 @@ QOTD_server
  List of quotes
  </summary>
 </member>
-<member name="M:QOTD_server.Server.#ctor(System.String,System.Int32,System.Collections.Generic.List{System.String})">
+<member name="M:QOTD_server.Server.#ctor(System.Int32,System.Collections.Generic.List{System.String})">
  <summary>
  Creates a New instance of QOTD server
  </summary>
- <param name="ip">IP address</param>
  <param name="port">On which port you want to start server</param>
  <param name="quotes">List of quotes</param>
 </member>
