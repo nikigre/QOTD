@@ -16,9 +16,29 @@ namespace QOTD_server
 
             //If we have first argument, then load custom quotes
             if (args.Length == 1)
-                quotes.AddRange(System.IO.File.ReadAllLines(args[0]));
+            {
+                if (System.IO.File.Exists(args[0]))
+                {
+                    quotes.AddRange(System.IO.File.ReadAllLines(args[0]));
+                }
+                else
+                {
+                    Console.WriteLine("Requested file does not exists!");
+                    Environment.Exit(1);
+                }
+            }
             else //Else load default quotes
-                quotes.AddRange(System.IO.File.ReadAllLines("quotes.txt"));
+            {
+                if (System.IO.File.Exists("quotes.txt"))
+                {
+                    quotes.AddRange(System.IO.File.ReadAllLines("quotes.txt"));
+                }
+                else
+                {
+                    Console.WriteLine("Default file quotes.txt does not exists!");
+                    Environment.Exit(1);
+                }
+            }
 
             //Create new server object
             Server qotdServer = new Server(17, quotes);
@@ -132,9 +152,17 @@ namespace QOTD_server
         /// </summary>
         public void RunServer()
         {
-            server.Start();
+            try
+            {
+                server.Start();
 
-            StartListening();
+                StartListening();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("There was a problem starting a web server. Is server on port 17 already running?\nError: " + ex.Message);
+                Environment.Exit(1);
+            }
         }
     }
 }
