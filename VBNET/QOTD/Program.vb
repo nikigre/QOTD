@@ -8,23 +8,55 @@ Module Program
         'Sets the default host address for the server
         Dim host As String = "127.0.0.1"
 
-        If args.Length > 0 Then
-            If args(0).Trim() = "/?" Or args(0).Contains("help") Then
-                handleHelp()
-            End If
-
-            'If host is given, we try to parse it. If it is unsuccesful, then it terminates the program
-            Dim tmp As IPAddress
-
-            If IPAddress.TryParse(args(0), tmp) Then
-                Console.WriteLine("IP address is not in the correct format!")
-                Environment.Exit(1)
-            End If
-
-            host = args(0)
-
+        'If we have no arguments, then we do a TCP request on the default sever
+        If args.Length = 0 Then
+            DoARequestTCP(host)
         End If
 
+        'If first argument Is call for help, we print help
+        If args(0).Trim() = "/?" Or args(0).Contains("help") Then
+            handleHelp()
+        End If
+
+        If args(0).ToUpper() = "UDP" Then 'If first argument Is UDP, then the host Is second argument.
+            'We check if host makes sense And then we do a UDP request
+            host = args(1)
+            checkIPhost(host)
+
+            DoARequestUDP(host)
+
+        ElseIf args(0).ToUpper() = "TCP" Then 'if first argument Is TCP, then the host Is second argument.
+            'We check if host makes sense And then we do a UDP request
+            host = args(1)
+            checkIPhost(host)
+
+            DoARequestTCP(host)
+
+        Else 'If it Is Not UDP/TCP then we know, that this Is host
+            'We check if host makes sense And then we do a UDP request
+            host = args(0)
+            DoARequestTCP(host)
+        End If
+    End Sub
+
+    ''' <summary>
+    ''' Method checks if IP/host makes sense
+    ''' </summary>
+    ''' <param name="host">Host we want to check</param>
+    Private Sub checkIPhost(host As String)
+        'If host Is given, we try to parse it. If it Is unsuccesful, then it terminates the program
+        Dim tmp As IPAddress
+        If (IPAddress.TryParse(host, tmp)) Then
+            System.Console.WriteLine("IP address or hostname is not in the correct format!")
+            Environment.Exit(1)
+        End If
+    End Sub
+
+    '''<summary>
+    ''' Method does TCP request to the host
+    '''</summary>
+    '''<param name="host">The host we want data from</param>
+    Private Sub DoARequestTCP(host As String)
         'We declare new tcpClient
         Dim tcpClient As TcpClient = Nothing
         Dim nwStream As NetworkStream = Nothing
@@ -53,6 +85,37 @@ Module Program
         Catch ex As Exception
             Environment.Exit(2)
         End Try
+
+        Environment.Exit(0)
+    End Sub
+
+    ''' <summary>
+    ''' Method sends a UDP request to the host
+    ''' </summary>
+    ''' <param name="host">The host we want data from</param>
+    Private Sub DoARequestUDP(host As String)
+
+        'We declare And initialice New UDP client
+        Dim UdpClient As UdpClient = New UdpClient(host, 17)
+
+        'And IP endpoint of server we are connecting to it
+        Dim server As IPEndPoint = New IPEndPoint(IPAddress.Any, 17)
+
+        'So that server knows where to send the quote firstly we need to send some data to the server
+        Dim data As Byte() = New Byte() {1}
+
+        UdpClient.Send(data, data.Length)
+
+        'Here we wait And read the data that server returns
+        Dim response As Byte() = UdpClient.Receive(server)
+
+        'Decode array of bytes to ASCII string
+        Dim stringResponse As String = Encoding.ASCII.GetString(response)
+
+        'Print the response back
+        System.Console.WriteLine(stringResponse)
+
+        Environment.Exit(0)
     End Sub
 
     ''' <summary>
@@ -93,15 +156,18 @@ Module Program
     ''' </summary>
     Private Sub handleHelp()
 
-        Console.WriteLine("USAGE:" & vbNewLine & vbTab & "qotd [/? | [hostname] ]")
+        Console.WriteLine("USAGE:" & vbNewLine & vbTab & "qotd [/? | [hostname] | TCP [hostname] |  UDP [hostname] ]")
         Console.WriteLine()
         Console.WriteLine("where:")
         Console.WriteLine(vbTab & "hostname" & vbTab & " Is the hostname of QOTD server you want to connect to")
         Console.WriteLine(vbNewLine & "Options:")
         Console.WriteLine(vbTab & "/? Display this help message")
+        Console.WriteLine(vbTab & "TCP Uses a TCP connection to the host")
+        Console.WriteLine(vbTab & "UDP Uses a UDP connection to the host")
         Console.WriteLine(vbNewLine & "Examples:")
         Console.WriteLine(vbTab & "qotd" & vbTab & vbTab & vbTab & "...Connects to the default server")
         Console.WriteLine(vbTab & "qotd 127.0.0.1" & vbTab & vbTab & "...Connects to the 127.0.0.1 server")
+        Console.WriteLine(vbTab & "qotd TCP 127.0.0.1" & vbTab & "...Connects to the 127.0.0.1 server with TCP protocol")
         Console.WriteLine(vbTab & "qotd qotd.example.com" & vbTab & "...Connects to the qotd.example.com server")
         Environment.Exit(0)
 

@@ -184,8 +184,8 @@ namespace client
             Console.WriteLine("\thostname\t Is the hostname of QOTD server you want to connect to");
             Console.WriteLine("\nOptions:");
             Console.WriteLine("\t/? Display this help message");
-            Console.WriteLine("\t/TCP Uses a TCP connection to the host");
-            Console.WriteLine("\t/UDP Uses a UDP connection to the host");
+            Console.WriteLine("\tTCP Uses a TCP connection to the host");
+            Console.WriteLine("\tUDP Uses a UDP connection to the host");
             Console.WriteLine("\nExamples:");
             Console.WriteLine("\tqotd\t\t\t...Connects to the default server");
             Console.WriteLine("\tqotd 127.0.0.1\t\t...Connects to the 127.0.0.1 server");

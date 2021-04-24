@@ -9,3 +9,14 @@ C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Debug\QOTD.vbproj.CoreCompi
 C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Debug\QOTD.exe
 C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Debug\QOTD.xml
 C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\QOTD\obj\Debug\QOTD.pdb
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\bin\Debug\QOTD.exe.config
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\bin\Debug\QOTD.exe
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\bin\Debug\QOTD.pdb
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\bin\Debug\QOTD.xml
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\obj\Debug\QOTD.vbprojAssemblyReference.cache
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\obj\Debug\QOTD.Resources.resources
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\obj\Debug\QOTD.vbproj.GenerateResource.cache
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\obj\Debug\QOTD.vbproj.CoreCompileInputs.cache
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\obj\Debug\QOTD.exe
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\obj\Debug\QOTD.xml
+C:\Users\nikgr\source\repos\QOTD\VBNET\QOTD\obj\Debug\QOTD.pdb

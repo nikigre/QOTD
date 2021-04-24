@@ -22,6 +22,24 @@ QOTD
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
+<member name="M:QOTD.Program.checkIPhost(System.String)">
+ <summary>
+ Method checks if IP/host makes sense
+ </summary>
+ <param name="host">Host we want to check</param>
+</member>
+<member name="M:QOTD.Program.DoARequestTCP(System.String)">
+<summary>
+ Method does TCP request to the host
+</summary>
+<param name="host">The host we want data from</param>
+</member>
+<member name="M:QOTD.Program.DoARequestUDP(System.String)">
+ <summary>
+ Method sends a UDP request to the host
+ </summary>
+ <param name="host">The host we want data from</param>
+</member>
 <member name="M:QOTD.Program.ReadTheResponse(System.Net.Sockets.NetworkStream)">
  <summary>
  Metods print to console output from NetworkStream
