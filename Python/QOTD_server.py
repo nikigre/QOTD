@@ -1,3 +1,6 @@
+import random
+import struct
+from datetime import datetime
 import sys
 import threading
 from os import path
@@ -5,8 +8,6 @@ import socket
 
 
 def main(args):
-    quotes = []  # variable for quotes
-
     if len(args) == 1:  # If we have first argument, then load custom quotes
         # We need to check, if file exists. If it does, then we can load it up.
         if path.exists(args[0]):
@@ -46,7 +47,7 @@ class Server:
                 while True:
                     print("Waiting for a TCP connection...")
                     client_sock, client_addr = s.accept()
-                    print(f"Connected to TCP IP: {client_addr}:{client_sock}")
+                    print(f"Connected to TCP IP: {client_addr[0]}:{client_addr[1]}")
 
                     thread = threading.Thread(target=self.handle_request_tcp, args=(client_sock, client_addr))
                     thread.daemon = True
@@ -56,11 +57,25 @@ class Server:
                 print(f"Socket exception {e}")
                 self.start_listening_tcp()
 
-    def handle_request_tcp(self):
+    def send_message(self, sock, message):
+        encoded_message = message.encode("utf-8")
+        header = struct.pack("!H", len(encoded_message))
+        message = header + encoded_message
+        sock.sendall(message)
+
+    def handle_request_tcp(self, client_sock, client_addr):
         try:
-            pass
+            content = self.get_quote()
+            self.send_message(client_sock, content)
         except Exception as e:
             print(f"Exception {e}")
+
+    def get_quote(self):
+        if self.we_have_quote_for_every_day:
+            content = self.quotes[datetime.now().timetuple().tm_yday]
+        else:
+            content = self.quotes[random.randint(0, len(self.quotes))]
+        return content
 
 
 if __name__ == "__main__":
