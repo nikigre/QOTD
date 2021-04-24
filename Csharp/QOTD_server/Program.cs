@@ -9,7 +9,6 @@ namespace QOTD_server
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             List<string> quotes = new List<string> { }; //Variable for quotes
@@ -47,7 +46,6 @@ namespace QOTD_server
 
             qotdServer.RunServer(); //We run our qotd server
         }
-
     }
 
     class Server
