@@ -67,7 +67,7 @@ Public Class Server
 
                 Dim client As TcpClient = server.AcceptTcpClient() 'Here we are waiting for a new connection
 
-                Console.WriteLine("Connected to IP: " & client.Client.LocalEndPoint.ToString())
+                Console.WriteLine("Connected to IP: " & client.Client.RemoteEndPoint.ToString())
 
                 'Creates new thread for a client and starts it
                 Dim t As Thread = New Thread(New ParameterizedThreadStart(AddressOf HandleRequest))

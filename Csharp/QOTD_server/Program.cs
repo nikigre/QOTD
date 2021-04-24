@@ -75,7 +75,7 @@ namespace QOTD_server
 
                     TcpClient client = server.AcceptTcpClient(); //Here we are waiting for a new connection
 
-                    Console.WriteLine("Connected to IP: " + client.Client.LocalEndPoint);
+                    Console.WriteLine("Connected to IP: " + client.Client.RemoteEndPoint);
 
                     //Creates new thread for a client and starts it
                     Thread t = new Thread(new ParameterizedThreadStart(HandleRequest));
