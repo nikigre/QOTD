@@ -51,7 +51,7 @@ namespace QOTD_server
     class Server
     {
         /// <summary>
-        /// TcpListener that is waoting for clients to connect
+        /// TcpListener that is waiting for clients to connect
         /// </summary>
         TcpListener server = null;
 

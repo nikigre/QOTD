@@ -1,0 +1,7 @@
+C:\Users\nikgr\source\repos\QOTD\Csharp\QOTD\bin\Debug\QOTD.exe.config
+C:\Users\nikgr\source\repos\QOTD\Csharp\QOTD\bin\Debug\QOTD.exe
+C:\Users\nikgr\source\repos\QOTD\Csharp\QOTD\bin\Debug\QOTD.pdb
+C:\Users\nikgr\source\repos\QOTD\Csharp\QOTD\obj\Debug\QOTD.csprojAssemblyReference.cache
+C:\Users\nikgr\source\repos\QOTD\Csharp\QOTD\obj\Debug\QOTD.csproj.CoreCompileInputs.cache
+C:\Users\nikgr\source\repos\QOTD\Csharp\QOTD\obj\Debug\QOTD.exe
+C:\Users\nikgr\source\repos\QOTD\Csharp\QOTD\obj\Debug\QOTD.pdb
