@@ -19,6 +19,11 @@ Module Program
         End If
 
         If args(0).ToUpper() = "UDP" Then 'If first argument Is UDP, then the host Is second argument.
+            If args.Length <= 1 Then
+                Console.WriteLine("Second argument must be the hostname or IP!")
+                Environment.Exit(1)
+            End If
+
             'We check if host makes sense And then we do a UDP request
             host = args(1)
             checkIPhost(host)
@@ -26,6 +31,11 @@ Module Program
             DoARequestUDP(host)
 
         ElseIf args(0).ToUpper() = "TCP" Then 'if first argument Is TCP, then the host Is second argument.
+            If args.Length <= 1 Then
+                Console.WriteLine("Second argument must be the hostname or IP!")
+                Environment.Exit(1)
+            End If
+
             'We check if host makes sense And then we do a UDP request
             host = args(1)
             checkIPhost(host)
@@ -94,26 +104,29 @@ Module Program
     ''' </summary>
     ''' <param name="host">The host we want data from</param>
     Private Sub DoARequestUDP(host As String)
+        Try
+            'We declare And initialice New UDP client
+            Dim UdpClient As UdpClient = New UdpClient(host, 17)
 
-        'We declare And initialice New UDP client
-        Dim UdpClient As UdpClient = New UdpClient(host, 17)
+            'And IP endpoint of server we are connecting to it
+            Dim server As IPEndPoint = New IPEndPoint(IPAddress.Any, 17)
 
-        'And IP endpoint of server we are connecting to it
-        Dim server As IPEndPoint = New IPEndPoint(IPAddress.Any, 17)
+            'So that server knows where to send the quote firstly we need to send some data to the server
+            Dim data As Byte() = New Byte() {1}
 
-        'So that server knows where to send the quote firstly we need to send some data to the server
-        Dim data As Byte() = New Byte() {1}
+            UdpClient.Send(data, data.Length)
 
-        UdpClient.Send(data, data.Length)
+            'Here we wait And read the data that server returns
+            Dim response As Byte() = UdpClient.Receive(server)
 
-        'Here we wait And read the data that server returns
-        Dim response As Byte() = UdpClient.Receive(server)
+            'Decode array of bytes to ASCII string
+            Dim stringResponse As String = Encoding.ASCII.GetString(response)
 
-        'Decode array of bytes to ASCII string
-        Dim stringResponse As String = Encoding.ASCII.GetString(response)
-
-        'Print the response back
-        System.Console.WriteLine(stringResponse)
+            'Print the response back
+            System.Console.WriteLine(stringResponse)
+        Catch ex As Exception
+            Console.WriteLine(ex.Message)
+        End Try
 
         Environment.Exit(0)
     End Sub

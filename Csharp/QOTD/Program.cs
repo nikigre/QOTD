@@ -26,6 +26,11 @@ namespace client
             //If first argument is UDP, then the host is second argument.
             if (args[0].ToUpper() == "UDP")
             {
+                if (args.Length <= 1)
+                {
+                    Console.WriteLine("Second argument must be the hostname or IP!");
+                    Environment.Exit(1);
+                }
                 //We check if host makes sense and then we do a UDP request
                 host = args[1];
                 checkIPhost(host);
@@ -36,6 +41,11 @@ namespace client
             //If first argument is TCP, then the host is second argument.
             else if (args[0].ToUpper() == "TCP")
             {
+                if (args.Length <= 1)
+                {
+                    Console.WriteLine("Second argument must be the hostname or IP!");
+                    Environment.Exit(1);
+                }
                 //We check if host makes sense and then we do a UDP request
                 host = args[1];
                 checkIPhost(host);
@@ -73,25 +83,31 @@ namespace client
         /// <param name="host">The host we want data from</param>
         private static void DoARequestUDP(string host)
         {
-            //We declare and initialice new UDP client
-            UdpClient udpClient = new UdpClient(host, 17);
+            try
+            {
+                //We declare and initialice new UDP client
+                UdpClient udpClient = new UdpClient(host, 17);
 
-            //And IP endpoint of server we are connecting to it
-            IPEndPoint server = new IPEndPoint(IPAddress.Any, 17);
+                //And IP endpoint of server we are connecting to it
+                IPEndPoint server = new IPEndPoint(IPAddress.Any, 17);
 
-            //So that server knows where to send the quote firstly we need to send some data to the server
-            byte[] data = new byte[] { 1 };
-            int packet1 = udpClient.Send(data, data.Length);
+                //So that server knows where to send the quote firstly we need to send some data to the server
+                byte[] data = new byte[] { 1 };
+                int packet1 = udpClient.Send(data, data.Length);
 
-            //Here we wait and read the data that server returns
-            byte[] response = udpClient.Receive(ref server);
+                //Here we wait and read the data that server returns
+                byte[] response = udpClient.Receive(ref server);
 
-            //Decode array of bytes to ASCII string
-            string stringResponse = Encoding.ASCII.GetString(response);
+                //Decode array of bytes to ASCII string
+                string stringResponse = Encoding.ASCII.GetString(response);
 
-            //Print the response back
-            System.Console.WriteLine(stringResponse);
-
+                //Print the response back
+                System.Console.WriteLine(stringResponse);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
             Environment.Exit(0);
         }
 
