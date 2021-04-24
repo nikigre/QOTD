@@ -22,9 +22,14 @@ QOTD_server
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
-<member name="F:QOTD_server.Server.server">
+<member name="F:QOTD_server.Server.serverTCP">
  <summary>
  TcpListener that Is waoting for clients to connect
+ </summary>
+</member>
+<member name="F:QOTD_server.Server.serverUDP">
+ <summary>
+ UDPclient that is waiting for clients to connect
  </summary>
 </member>
 <member name="F:QOTD_server.Server.WeHaveQuoteForEveryDay">
@@ -44,21 +49,38 @@ QOTD_server
  <param name="port">On which port you want to start server</param>
  <param name="quotes">List of quotes</param>
 </member>
-<member name="M:QOTD_server.Server.StartListening">
+<member name="M:QOTD_server.Server.RunServer">
+ <summary>
+ Method runs a server
+ </summary>
+</member>
+<member name="M:QOTD_server.Server.StartListeningUDP">
+ <summary>
+ This method starts listening for New clients
+ </summary>
+</member>
+<member name="M:QOTD_server.Server.StartListeningTCP">
  <summary>
  This method starts listening for new clients
  </summary>
 </member>
-<member name="M:QOTD_server.Server.HandleRequest(System.Object)">
+<member name="M:QOTD_server.Server.HandleRequestTCP(System.Object)">
  <summary>
  Method handles client's request
  </summary>
  <param name="obj">TcpClient in an object form</param>
 </member>
-<member name="M:QOTD_server.Server.RunServer">
- <summary>
- Method runs a server
+<member name="M:QOTD_server.Server.HandleRequestUDP(System.Object)">
+<summary>
+ Method handles client's request
  </summary>
+<param name="obj">UdpClient in an object form</param>
+</member>
+<member name="M:QOTD_server.Server.GetQuote">
+ <summary>
+ Method returns quote of the day
+ </summary>
+ <returns>Reurns ASCII string in byte[] array</returns>
 </member>
 </members>
 </doc>
