@@ -21,7 +21,7 @@ namespace QOTD_server
                 quotes.AddRange(System.IO.File.ReadAllLines("quotes.txt"));
 
             //Create new server object
-            Server qotdServer = new Server("127.0.0.1", 17, quotes);
+            Server qotdServer = new Server(17, quotes);
 
             qotdServer.RunServer(); //We run our qotd server
         }
@@ -48,10 +48,9 @@ namespace QOTD_server
         /// <summary>
         /// Creates a new instance of QOTD server
         /// </summary>
-        /// <param name="ip">IP address</param>
         /// <param name="port">On which port you want to start server</param>
         /// <param name="quotes">List of quotes</param>
-        public Server(string ip, int port, List<string> quotes)
+        public Server(int port, List<string> quotes)
         {
             this.quotes = quotes;
 
@@ -59,9 +58,8 @@ namespace QOTD_server
             if (quotes.Count == 365 || quotes.Count == 366)
                 WeHaveQuoteForEveryDay = true;
 
-            //Initialize variables
-            IPAddress localAddr = IPAddress.Parse(ip);
-            server = new TcpListener(localAddr, port);
+            //Initialize variable
+            server = new TcpListener(IPAddress.Any, port);
         }
 
         /// <summary>
