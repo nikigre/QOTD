@@ -86,7 +86,7 @@ namespace QOTD_server
             //Initialize variable
             serverTCP = new TcpListener(IPAddress.Any, port);
 
-            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, 17);
+            IPEndPoint ipep = new IPEndPoint(IPAddress.Any, port);
             serverUDP = new UdpClient(ipep);
         }
 
