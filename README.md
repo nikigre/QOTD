@@ -6,6 +6,8 @@ Some info:
 - Today it is not used anymore
 
 More about this protocol you can read [here](https://tools.ietf.org/html/rfc865).
+
+You can access my QOTD server here: qotd.nikigre.si.
 ## What is the point of this repository?
 Its main goal is to tell the world about this funny thing and also to show new programmers how sockets in different programming languages work. If you want to contribute, read below.
 
