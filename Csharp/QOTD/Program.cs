@@ -33,7 +33,6 @@ namespace client
                 }
                 //We check if host makes sense and then we do a UDP request
                 host = args[1];
-                checkIPhost(host);
 
                 DoARequestUDP(host);
 
@@ -48,7 +47,6 @@ namespace client
                 }
                 //We check if host makes sense and then we do a UDP request
                 host = args[1];
-                checkIPhost(host);
 
                 DoARequestTCP(host);
             }
@@ -60,21 +58,6 @@ namespace client
                 DoARequestTCP(host);
             }
 
-        }
-
-        /// <summary>
-        /// Method checks if IP/host makes sense
-        /// </summary>
-        /// <param name="host">Host we want to check</param>
-        private static void checkIPhost(string host)
-        {
-            //If host is given, we try to parse it. If it is unsuccesful, then it terminates the program
-            IPAddress tmp;
-            if (!IPAddress.TryParse(host, out tmp))
-            {
-                System.Console.WriteLine("IP address or hostname is not in the correct format!");
-                Environment.Exit(1);
-            }
         }
 
         /// <summary>

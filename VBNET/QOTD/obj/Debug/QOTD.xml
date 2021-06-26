@@ -22,12 +22,6 @@ QOTD
   resource lookups using this strongly typed resource class.
 </summary>
 </member>
-<member name="M:QOTD.Program.checkIPhost(System.String)">
- <summary>
- Method checks if IP/host makes sense
- </summary>
- <param name="host">Host we want to check</param>
-</member>
 <member name="M:QOTD.Program.DoARequestTCP(System.String)">
 <summary>
  Method does TCP request to the host

@@ -26,7 +26,6 @@ Module Program
 
             'We check if host makes sense And then we do a UDP request
             host = args(1)
-            checkIPhost(host)
 
             DoARequestUDP(host)
 
@@ -38,7 +37,6 @@ Module Program
 
             'We check if host makes sense And then we do a UDP request
             host = args(1)
-            checkIPhost(host)
 
             DoARequestTCP(host)
 
@@ -46,19 +44,6 @@ Module Program
             'We check if host makes sense And then we do a UDP request
             host = args(0)
             DoARequestTCP(host)
-        End If
-    End Sub
-
-    ''' <summary>
-    ''' Method checks if IP/host makes sense
-    ''' </summary>
-    ''' <param name="host">Host we want to check</param>
-    Private Sub checkIPhost(host As String)
-        'If host Is given, we try to parse it. If it Is unsuccesful, then it terminates the program
-        Dim tmp As IPAddress
-        If (Not IPAddress.TryParse(host, tmp)) Then
-            System.Console.WriteLine("IP address or hostname is not in the correct format!")
-            Environment.Exit(1)
         End If
     End Sub
 
