@@ -56,7 +56,7 @@ Module Program
     Private Sub checkIPhost(host As String)
         'If host Is given, we try to parse it. If it Is unsuccesful, then it terminates the program
         Dim tmp As IPAddress
-        If (IPAddress.TryParse(host, tmp)) Then
+        If (Not IPAddress.TryParse(host, tmp)) Then
             System.Console.WriteLine("IP address or hostname is not in the correct format!")
             Environment.Exit(1)
         End If

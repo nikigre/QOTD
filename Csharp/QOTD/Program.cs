@@ -70,7 +70,7 @@ namespace client
         {
             //If host is given, we try to parse it. If it is unsuccesful, then it terminates the program
             IPAddress tmp;
-            if (IPAddress.TryParse(host, out tmp))
+            if (!IPAddress.TryParse(host, out tmp))
             {
                 System.Console.WriteLine("IP address or hostname is not in the correct format!");
                 Environment.Exit(1);
